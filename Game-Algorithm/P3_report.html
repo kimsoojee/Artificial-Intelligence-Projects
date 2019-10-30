@@ -1,0 +1,137 @@
+<p></p>
+<center><a href="http://www.bu.edu"><img border="0" src="http://www.cs.bu.edu/fac/betke/images/bu-logo.gif" width="119" height="120" /></a></center>
+<h1>Game Playing</h1>
+<p>CS 440 Programming assignment 3<br /> Your Name: SooJee Kim<br /> Your teammate name: Aris&nbsp;Vanderpool<br /> Date: April 25, 2018<br /><br /></p>
+<div class="main-body"><hr />
+<h2></h2>
+<h2>Problem Definition</h2>
+<p>In this assignment, we implemented a strategy to play this game intelligently.</p>
+<ul>
+<li>Design a static evaluator,</li>
+<li>Select an adversarial search algorithm (alpha-beta search),</li>
+<li>Implement this algorithm and apply it to the Atropos game,</li>
+<li>Package our code so that the executable can participate in an automatic tournament.</li>
+</ul>
+<p></p>
+<hr />
+<h2></h2>
+<h2>Method and Implementation</h2>
+<ol>
+<li>ReadBoard()<br /><br />This function takes the input string and return board in 2-d integer array and last movement.<br /><br /></li>
+<li>PossibleMoves()<br /><br />This function checks all six adjacent circle colors of last movement and return a list containing&nbsp;next possible movement options.<br />If last movement is null, it checks all the board and find all uncolored circle and generate a list of available movements with possible colors.&nbsp;<br /><br /></li>
+<li>neighbor()<br /><br />This function checks all six adjacent circle colors of a certain movement and return its colors<br /><br /></li>
+<li>isLoss()<br /><br />The function checks its movement color and two adjacent circle colors positioning in triangle. If their colors are the set of different colors, this return True. Otherwise, False.<br /><br /></li>
+<li>evaluator()&nbsp;<br /><br />This function scores on a movement.<br />&nbsp; &nbsp; -If the movement make the game over, then score = -1000<br />&nbsp; &nbsp; -Check boundary colors:<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -Botton boundary is not green&nbsp; -&gt; +2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -Bottom left cornoer is not blue&nbsp; -&gt; +2&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -Left boundary is not blue&nbsp; -&gt; +2<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -Right boundary is not red&nbsp; -&gt; +2<br />&nbsp; &nbsp; -Adjacent circle is colored&nbsp; -&gt;&nbsp; +3<br />&nbsp; &nbsp; -Same colored neighbors with move itself -&gt; +5<br />&nbsp; &nbsp; -Different colored neighbor pairs -&gt; +2<br /><br /></li>
+<li>minimax()<br /><br /><span>This function implements the Minimax method with alpha-beta pruning. It searches next movement and if certain conditions were met, it will stop and return the next best movement.</span></li>
+</ol>
+<p><span></span></p>
+<hr />
+<h2></h2>
+<h2>Experiments</h2>
+<ul>
+<li>We experimented many times chaning the value of score in evaluator function and depth for minimax function to find ideal resutls</li>
+</ul>
+<p></p>
+<hr />
+<h2></h2>
+<h2>Results</h2>
+<ul>
+<li>We tested 10 times againt random player and we got 6 wins and 4 loses.</li>
+</ul>
+<p></p>
+<table>
+<tbody>
+<tr>
+<td colspan="4" style="text-align: left;"><strong>Default Win</strong></td>
+</tr>
+<tr>
+<td><img src="img/d2.png" width="200" height="350" /></td>
+<td><img src="img/d3.png" width="200" height="350" /></td>
+<td><img src="img/d1.png" width="200" height="450" /></td>
+<td><img src="img/d4.png" width="200" height="450" /></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<table>
+<tbody>
+<tr>
+<td colspan="4" style="text-align: left;"><strong>Script Win</strong></td>
+</tr>
+<tr>
+<td><img src="img/s1.png" width="200" height="350" /></td>
+<td><img src="img/s2.png" width="200" height="350" /></td>
+<td><img src="img/s3.png" width="200" height="450" /></td>
+<td><img src="img/s4.png" width="200" height="450" /></td>
+<td><img src="img/s5.png" width="200" height="450" /></td>
+<td><img src="img/s6.png" width="200" height="450" /></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p></p>
+<ul>
+<li>We tested 10 times againt ourself and we got 6 wins and 4 loses.</li>
+</ul>
+<p></p>
+<p></p>
+<table>
+<tbody>
+<tr>
+<td colspan="4" style="text-align: left;"><strong>Script One Win</strong></td>
+</tr>
+<tr>
+<td><img src="img/o1.png" width="200" height="450" /></td>
+<td><img src="img/o2.png" width="200" height="450" /></td>
+<td><img src="img/o3.png" width="200" height="450" /></td>
+<td><img src="img/o4.png" width="200" height="450" /></td>
+<td><img src="img/o5.png" width="200" height="450" /></td>
+<td><img src="img/o6.png" width="200" height="450" /></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p></p>
+<table>
+<tbody>
+<tr>
+<td colspan="4" style="text-align: left;"><strong>Script Two Win</strong></td>
+</tr>
+<tr>
+<td><img src="img/t1.png" width="200" height="450" /></td>
+<td><img src="img/t2.png" width="200" height="450" /></td>
+<td><img src="img/t3.png" width="200" height="450" /></td>
+<td><img src="img/t4.png" width="200" height="450" /></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<hr />
+<h2></h2>
+<h2>Discussion</h2>
+<ul>
+<li>During the experiments, our program ran without breaks.</li>
+<li>We implemented minimax with alpha-beta pruning. It saved much time to run the code because it did not need to evaluate all the movements but few selected movements by certain conditions.</li>
+<li>There must be more methods to make the program more intelligent. we want to learn how we can improve our evaluator function.</li>
+</ul>
+<p></p>
+<hr />
+<h2></h2>
+<h2>Conclusions</h2>
+<ul>
+<li><span>It was not easy to figure out the way implement the minimax algorithm with alpha-beta pruning technique. This assignment challenges our understanding of the algorithm and coding skill. However, I enjoyed alot doing this assignment. It was quite fun to discuss and think about strategy with my partner.</span></li>
+</ul>
+<p></p>
+<hr />
+<h2></h2>
+<h2>Credits and Bibliography</h2>
+<br /><a href="http://www.cs.bu.edu/faculty/betke/cs440/restricted/labs/CS440_lab10.pdf">http://www.cs.bu.edu/faculty/betke/cs440/restricted/labs/CS440_lab10.pdf</a>
+<table>
+<tbody>
+<tr></tr>
+</tbody>
+</table>
+</div>
+<div class="main-body"></div>
+<div class="main-body"></div>
+<div class="main-body"></div>
